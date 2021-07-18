@@ -5,6 +5,8 @@ const thoughtsController = {
     // get all thoughts
     getAllThoughts(req, res) {
       Thoughts.find({})
+        .select('-__v')
+        .sort({ _id: -1 })
         .then(dbThoughtsData => res.json(dbThoughtsData))
         .catch(err => {
           console.log(err);
@@ -15,11 +17,15 @@ const thoughtsController = {
       // get one thoughts by id
       getThoughtsById({ params }, res) {
         Thoughts.findOne({ _id: params.id })
-          .then(dbThoughtsData => res.json(dbThoughtsData))
-          .catch(err => {
-            console.log(err);
-            res.sendStatus(400);
-          });
+            .select('-__v')
+            .then(dbThoughtsData => {
+                if (!dbThoughtsData) {
+                    res.status(404).json({ message: 'No thought found with this id!' });
+                    return;
+                }
+                res.json(dbThoughtsData);
+            })
+            .catch(err => res.status(400).json(err));
       },
 
     //create the method for handling POST /api/thoughts
