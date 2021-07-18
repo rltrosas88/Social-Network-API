@@ -30,7 +30,7 @@ const thoughtsController = {
 
     //create the method for handling POST /api/thoughts
     // createthought
-    createPizza({ body }, res) {
+    createThoughts({ body }, res) {
       Thoughts.create(body)
         .then(dbThoughtsData => res.json(dbThoughtsData))
         .catch(err => res.json(err));
@@ -64,7 +64,11 @@ const thoughtsController = {
           res.json(dbPizzaData);
         })
         .catch(err => res.status(400).json(err));
-    }
+    },
+
+    //POST to create reaction stored in a single thought's reaction array field
+    
+    //DELET to pull and remove a reaction by the reaction's reactionId value
   };
 
   module.exports = thoughtsController;
