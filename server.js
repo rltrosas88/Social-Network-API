@@ -1,5 +1,5 @@
 const express = require('express');
-//18.1.5 step SIX set up Mongoose to connect when the app is started
+//set up Mongoose to connect when the app is started
 const mongoose = require('mongoose');
 
 const app = express();
