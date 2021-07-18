@@ -84,11 +84,11 @@ const thoughtsController = {
             .catch(err => res.status(400).json(err));
     },
     //DELET to pull and remove a reaction by the reaction's reactionId value
-    deleteFriend({ params }, res) {
+    deleteReaction({ params }, res) {
         User.findOneAndDelete({
-            id_: params.id
+            id_: params.thoughtId
         },
-        {$pull: { friends: params.friendsId }},
+        {$pull: { reactions: { reactionId: params.reactionsId } }},
         {new: true},
         )
         .then(dbUserData => res.json(dbUserData))
