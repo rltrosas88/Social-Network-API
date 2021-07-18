@@ -2,7 +2,7 @@ const { User } = require('../models');
 
 const userController = {
   //18.1.6 step TWO create the first two methods
-    // get all pizzas
+    // get all users
     getAllUsers(req, res) {
       User.find({})
         .then(dbUserData => res.json(dbUserData))
@@ -12,10 +12,21 @@ const userController = {
         });
     },
     
-      // get one user by id
+      // get one user by id and populate thought and friend data
       getUserById({ params }, res) {
         User.findOne({ _id: params.id })
-          .then(dbUserData => res.json(dbUserData))
+            .populate({
+                path: 'thought',
+                select: '-__v'
+            })
+            .select('-__v')
+          .then(dbUserData => {
+            if (!dbUserData) {
+                res.status(404).json({ message: 'No user was found with this id!' });
+                  return;
+                }
+                res.json(dbUserData);
+            })
           .catch(err => {
             console.log(err);
             res.sendStatus(400);
