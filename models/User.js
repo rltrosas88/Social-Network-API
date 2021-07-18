@@ -38,7 +38,7 @@ const UserSchema = new Schema({
       },
   });
 
-  //create the Pizza model using the UserSchema
+  //create the user model using the UserSchema
 const User = model('User', UserSchema);
 
 //export the User model
