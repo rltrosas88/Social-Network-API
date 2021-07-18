@@ -67,8 +67,33 @@ const thoughtsController = {
     },
 
     //POST to create reaction stored in a single thought's reaction array field
-    
+    addReaction({ params }, res){
+        Thoughts.findOneAndUpdate({
+            id_: params.id
+        },
+        {$push: { reactions: body}},
+        {new: true},
+        )
+        .then(dbThoughtsData => {
+            if (!dbThoughtsData) {
+                res.status(404).json({ message: 'No thought found with this id!' });
+                return;
+              }
+              res.json(dbPizzaData);
+            })
+            .catch(err => res.status(400).json(err));
+    },
     //DELET to pull and remove a reaction by the reaction's reactionId value
+    deleteFriend({ params }, res) {
+        User.findOneAndDelete({
+            id_: params.id
+        },
+        {$pull: { friends: params.friendsId }},
+        {new: true},
+        )
+        .then(dbUserData => res.json(dbUserData))
+        .catch(err => res.status(400).json(err));
+    }
   };
 
   module.exports = thoughtsController;
