@@ -41,9 +41,9 @@ const userController = {
         .catch(err => res.json(err));
     },
 
-    //creat the method for when requesting to PUT /api/pizzas/:id
+    //creat the method for when requesting to PUT /api/pizza/:id
     // update user by id
-    updatePizza({ params, body }, res) {
+    updateUser({ params, body }, res) {
       //with .findOneAndUpdate method, mongoose finds a single document we want to update,
             //then updates it and returns the updated document
       User.findOneAndUpdate({ _id: params.id }, body, { new: true })
@@ -59,8 +59,8 @@ const userController = {
 
     //create the method to delet a pizza from the database
     // delete user
-    deletePizza({ params }, res) {
-      Pizza.findOneAndDelete({ _id: params.id })
+    deleteUser({ params }, res) {
+      User.findOneAndDelete({ _id: params.id })
         .then(dbUserData => {
           if (!dbUserData) {
             res.status(404).json({ message: 'No user was found with this id!' });
