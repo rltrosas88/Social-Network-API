@@ -1,9 +1,28 @@
-//18.1.5 step ONE import the dpendencies
-const { Timestamp } = require('bson');
+//import the dpendencies
 const moment = require('moment');
 const { Schema, model } = require('mongoose');
 
-//add the schema using the Schema constructor imported from Mongoose and 
+//add the ReactionSchema using the Schema constructor imported from Mongoose and 
+    //define the fields with specific data types
+const ReactionSchema = new mongoose.Schema({
+  reactionId: mongoose.ObjectId,
+  reactionBody: {
+    type: String,
+    required: true,
+    maxLength: 280
+  },
+  username: {
+    type: String,
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    get: (timeStampValidation) =>
+      moment(timeStampValidation).format("MMMM Do YYYY, h:mm:ss a"),
+  }
+})
+//add the ThoughtsSchema using the Schema constructor imported from Mongoose and 
     //define the fields with specific data types
 const ThoughtsSchema = new Schema({
     //The text
