@@ -6,19 +6,19 @@ const {
   getThoughtsById,
   createThoughts,
   updateThoughts,
-  deleteUser,
-  addFriend,
-  deleteFriend,
+  deleteThoughts,
+  addReaction,
+  deleteReaction,
 } = require('../../controllers/thoughts-controller');
 
-// Set up GET all and POST at /api/user
+// Set up GET all and POST at /api/thoughts
 // /api/pizzas
 router
   .route('/')
   .get(getAllThoughts)
   .post(createThoughts);
 
-// Set up GET one, PUT, and DELETE at /api/user/:id
+// Set up GET one, PUT, and DELETE at /api/thoughts/:id
 // /api/user/:id
 router
   .route('/:id')
@@ -26,10 +26,10 @@ router
   .put(updateThoughts)
   .delete(deleteThoughts);
 
-//Set up Get one, PUT, and DELETE at /api/users/:userId/friends/:friendId
+//Set up Get one, PUT, and DELETE at /api/users/:thoughtsId/reaction
 router
-    .route('/:id/friends/:friendId')
-    .post(addFriend)
-    .delete(deleteFriend);
+    .route('/:thougtId/reactions')
+    .post(addReaction)
+    .delete(deleteReaction);
 
 module.exports = router;
