@@ -19,7 +19,10 @@ const ThoughtsSchema = new Schema({
       get: (timeStampValidation) =>
       moment(timeStampValidation).format("MMMM Do YYYY, h:mm:ss a"),
     },
-    toJSON: { getters: true },
+    toJSON: { 
+      getters: true,
+      virtuals: true
+    },
     //the user that created this thought
     username: {
       type: String,
@@ -28,6 +31,11 @@ const ThoughtsSchema = new Schema({
     //the replies
     reactions: [ReactionSchema],
   });
+
+//create a virtual called reactionCount that retrieves the length of the thought's reaction array field on query
+ThoughtsSchema.virtual("reactionCount").get(function () {
+  return this.reactions.length;
+});
 
 //create the Thoughts model using the ThoughtsSchema
 const Thoughts = model('Thoughts', ThoughtsSchema);
