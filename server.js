@@ -12,7 +12,7 @@ app.use(require('./routes'));
 
 //tell Mongoose which database to connect to
     //if the environment variable MONGODB_URI exists it use that or
-        //it will short-circuit to the local MongoDB server's database at mongodb://localhost/pizza-hunt
+        //it will short-circuit to the local MongoDB server's database at mongodb://localhost/Social-Network-API
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/Social-Network-API', {
   useFindAndModify: false,
   useNewUrlParser: true,
