@@ -1,20 +1,26 @@
 //import the dpendencies
 const moment = require('moment');
-const { Schema, model } = require('mongoose');
+const { Schema, model, Types } = require('mongoose');
 
 //add the ReactionSchema using the Schema constructor imported from Mongoose and 
     //define the fields with specific data types
 const ReactionSchema = new mongoose.Schema({
-  reactionId: mongoose.ObjectId,
+  reactionId: {
+    type: Schema.Types.ObjectId,
+    default: () => new Types.ObjectId()
+  },
+
   reactionBody: {
     type: String,
     required: true,
     maxLength: 280
   },
+
   username: {
     type: String,
     required: true,
   },
+  //a timestamp of when the reaction was created
   createdAt: {
     type: Date,
     default: Date.now,
