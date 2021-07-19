@@ -1,8 +1,8 @@
 {
-  "name": "Social-Network-API",
+  "name": "social-network-api",
   "version": "1.0.0",
   "private": true,
-  "description": "",
+  "description": "This is a face social network web application where users can share their thoughts, react to friends' thoughts, and create a friend list.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
@@ -14,5 +14,14 @@
     "express": "^4.17.1",
     "moment": "^2.29.1",
     "mongoose": "^5.13.3"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rltrosas88/Social-Network-API.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rltrosas88/Social-Network-API/issues"
+  },
+  "homepage": "https://github.com/rltrosas88/Social-Network-API#readme"
 }
